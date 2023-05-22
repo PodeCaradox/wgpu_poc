@@ -1,0 +1,58 @@
+[package]
+name = "castle_sim"
+version = "0.1.0"
+authors = ["Johannes Zimmermann"]
+edition = "2021"
+build = "build.rs"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "castle_sim"
+path = "src/main.rs"
+
+[features]
+stdweb = ["instant/stdweb"]
+
+[dependencies]
+instant = "0.1.12"
+winit = "0.28.3"
+env_logger = "0.10"
+log = "0.4"
+wgpu = "0.16.0"
+pollster = "0.3.0"
+bevy_ecs = "0.10.0"
+bevy_utils = "0.10.0"
+thiserror = "1.0"
+downcast-rs = "1.2.0"
+anyhow = "1.0.4"
+bytemuck = { version = "1.12", features = ["derive"] }
+cgmath = "0.18"
+rand = "0.8.5"
+cfg-if = "1.0.0"
+
+[dependencies.image]
+version = "0.24"
+default-features = false
+features = ["png", "jpeg"]
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[build-dependencies]
+fs_extra = "1.2"
+glob = "0.3"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+crossbeam-channel = "0.5"
+console_error_panic_hook = "0.1.6"
+console_log = "1.0.0"
+wasm-bindgen = "0.2.84"
+js-sys = "0.3.61"
+wasm-bindgen-futures = "0.4.34"
+web-sys = { version = "0.3.61", features = [
+    "Document",
+    "Request", "Window", "Response", 'Performance', 'PerformanceTiming',
+    "Element",
+] }
