@@ -2,6 +2,7 @@
 pub mod file_asset_io;
 #[cfg(target_arch = "wasm32")]
 pub mod wasm_asset_io;
+pub mod loading_state;
 
 
 use downcast_rs::{impl_downcast, Downcast};

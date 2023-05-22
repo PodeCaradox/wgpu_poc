@@ -15,7 +15,7 @@ use winit::event_loop::{ControlFlow, EventLoop};
 use winit::window::{Window, WindowBuilder};
 
 use crate::components::cs_io;
-use crate::components::cs_io::AssetIo;
+use crate::components::cs_io::{AssetIo, loading_state};
 use crate::components::cs_render::render_loop::{render_game_world, render_instances};
 use crate::components::cs_render::shader::{compute_shader_binding, texture_sampler_binding};
 use crate::components::cs_render::shader::camera_binding::CameraBinding;
@@ -153,6 +153,7 @@ pub async fn main_loop(width: u32, height: u32) {
     world.insert_resource(dummy_test);
     world.insert_resource(<Input<VirtualKeyCode>>::default());
     world.insert_resource(render);
+    loading_state::set_loading_finish();
     let mut fps_counter = FPSCounter::new();
     let mut t: f64 = 0.0;
     let dt: f64 = 0.01;
