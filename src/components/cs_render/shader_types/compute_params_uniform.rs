@@ -1,7 +1,6 @@
 use bevy_ecs::schedule::Schedule;
 use bevy_ecs::system::{Res, ResMut, Resource};
 use bevy_ecs::world::World;
-use log::error;
 
 use crate::components::cs_util::camera::CustomCamera;
 use crate::components::cs_world::map::SIZE;

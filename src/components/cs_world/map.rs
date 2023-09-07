@@ -1,10 +1,7 @@
 use cgmath::Vector2;
 use rand::{Rng, thread_rng};
-use wgpu::{BindGroup, BindGroupLayout, Device};
-use wgpu::util::DeviceExt;
 
 use crate::components::cs_render::shader_types::tile_instance::{AtlasCoordinate, TileInstance};
-use crate::components::cs_render::world_render_pipline;
 
 pub const SIZE: i32 = 200;
 pub const TILE_SIZE: Vector2<f32> = Vector2::new(32.0, 16.0);

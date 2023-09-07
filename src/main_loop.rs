@@ -3,30 +3,28 @@ use std::time::Duration;
 
 use bevy_ecs::change_detection::DetectChangesMut;
 use bevy_ecs::schedule::Schedule;
-use bevy_ecs::system::{Res, ResMut, Resource};
+use bevy_ecs::system::{Resource};
 use bevy_ecs::world::World;
 use cgmath::Vector2;
 use instant::Instant;
-use log::warn;
 use wgpu::{BindGroup, Buffer, ComputePipeline, Device, Queue, RenderPipeline, Surface, SurfaceConfiguration};
 use winit::dpi::{LogicalSize, PhysicalSize};
 use winit::event::VirtualKeyCode;
-use winit::event_loop::{ControlFlow, EventLoop};
-use winit::window::{Window, WindowBuilder};
+use winit::event_loop::{EventLoop};
+use winit::window::{WindowBuilder};
 
 use crate::components::cs_io;
 use crate::components::cs_io::{AssetIo, loading_state};
-use crate::components::cs_render::render_loop::{render_game_world, render_instances};
-use crate::components::cs_render::shader::{compute_shader_binding, texture_sampler_binding};
+use crate::components::cs_render::render_loop::{render_game_world};
+use crate::components::cs_render::shader::{texture_sampler_binding};
 use crate::components::cs_render::shader::camera_binding::CameraBinding;
 use crate::components::cs_render::shader::compute_shader_binding::ComputeParamsBinding;
 use crate::components::cs_render::shader_types::camera_uniform::CameraUniform;
-use crate::components::cs_render::shader_types::compute_params_uniform;
 use crate::components::cs_render::shader_types::compute_params_uniform::ComputeParamsUniform;
 use crate::components::cs_render::shader_types::texture::Texture;
 use crate::components::cs_render::world_render_pipline;
 use crate::components::cs_util::camera::CustomCamera;
-use crate::components::cs_util::cs_window::{check_window_events, platform_specific_init, resize_window, State};
+use crate::components::cs_util::cs_window::{check_window_events, platform_specific_init, State};
 #[cfg(target_arch = "wasm32")]
 use crate::components::cs_util::cs_window::WinitWebResizing;
 use crate::components::cs_util::fps_counter::FPSCounter;
@@ -155,7 +153,7 @@ pub async fn main_loop(width: u32, height: u32) {
     world.insert_resource(render);
     loading_state::set_loading_finish();
     let mut fps_counter = FPSCounter::new();
-    let mut t: f64 = 0.0;
+    let mut _t: f64 = 0.0;
     let dt: f64 = 0.01;
     let mut current_time = Instant::now();
     let mut accumulator = 0.0;
@@ -180,11 +178,10 @@ pub async fn main_loop(width: u32, height: u32) {
                 accumulator += frame_time.as_secs_f64();
                 fps_counter.tick(frame_time);
                 while accumulator >= dt {
-                    t += dt;
+                    _t += dt;
 
                     update_schedule.run(&mut world);
 
-                    //TODO own system
                     let mut key_input = world.get_resource_mut::<Input<VirtualKeyCode>>().unwrap();
                     key_input.bypass_change_detection();
                     key_input.clear();
@@ -193,7 +190,7 @@ pub async fn main_loop(width: u32, height: u32) {
                     accumulator -= dt;
                 }
 
-                let alpha = accumulator / dt;
+                let _alpha = accumulator / dt;
 
                 render_game_world(&mut world, &mut state, control_flow);
             }

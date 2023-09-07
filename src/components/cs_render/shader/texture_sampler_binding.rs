@@ -28,7 +28,7 @@ pub fn create_texture_group_layout(device: &Device) -> BindGroupLayout {
                 visibility: wgpu::ShaderStages::FRAGMENT,
                 ty: wgpu::BindingType::Texture {
                     multisampled: false,
-                    view_dimension: wgpu::TextureViewDimension::D2,
+                    view_dimension: wgpu::TextureViewDimension::D2Array,
                     sample_type: wgpu::TextureSampleType::Float { filterable: true },
                 },
                 count: None,

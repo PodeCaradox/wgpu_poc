@@ -1,12 +1,8 @@
 use std::iter;
 
-use bevy_ecs::schedule::Schedule;
-use bevy_ecs::system::Res;
 use bevy_ecs::world::World;
 use cgmath::Vector2;
-use log::error;
 use log::warn;
-use winit::dpi::Size;
 use winit::event_loop::ControlFlow;
 
 use crate::components::cs_render::shader::camera_binding::CameraBinding;
@@ -14,7 +10,6 @@ use crate::components::cs_render::shader::compute_shader_binding::ComputeParamsB
 use crate::components::cs_render::shader_types::compute_params_uniform::{COMPUTEGROUPSIZE, ComputeParamsUniform};
 use crate::components::cs_render::shader_types::geometry::VERTICES;
 use crate::components::cs_util::cs_window::State;
-use crate::components::cs_world::map::SIZE;
 use crate::main_loop::{DummyTest, Render};
 
 pub fn render_game_world(world: &mut World, state: &mut State, control_flow: &mut ControlFlow) {
@@ -104,7 +99,7 @@ fn calc_visible_tiles(start_pos_x: i32, start_pos_y: i32, columns: i32, rows: i3
     let mut start = Vector2::new(start_pos_x, start_pos_y);
     let mut outside = 1;
 
-    for i in 0..columns {
+    for _i in 0..columns {
         start.x += 1;
         start.y += 1;
         if start.x >= 0 && start.y >= 0 && start.y < map_size_y && start.x < map_size_x {

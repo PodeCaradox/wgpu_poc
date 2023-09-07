@@ -1,8 +1,7 @@
 use std::borrow::Cow;
 use std::path::Path;
 
-use log::error;
-use wgpu::{BindGroup, BindGroupLayout, Buffer, BufferDescriptor, ComputePipeline, Device, RenderPipeline, ShaderModule, SurfaceConfiguration, util};
+use wgpu::{BindGroup, BindGroupLayout, Buffer, ComputePipeline, Device, RenderPipeline, ShaderModule, SurfaceConfiguration, util};
 use wgpu::util::DeviceExt;
 
 use crate::components::cs_io::AssetIo;

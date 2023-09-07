@@ -1,8 +1,6 @@
-use std::num::NonZeroU32;
-
 use anyhow::*;
 use image::GenericImageView;
-use wgpu::{Device, Sampler};
+use wgpu::{Device, Sampler, TextureViewDimension};
 
 pub struct Texture {
     pub texture: wgpu::Texture,
@@ -62,11 +60,11 @@ impl Texture {
     ) -> Result<Self> {
         let rgba = img.to_rgba8();
         let dimensions = img.dimensions();
-
+        let image_layers = 1;
         let size = wgpu::Extent3d {
             width: dimensions.0,
             height: dimensions.1,
-            depth_or_array_layers: 1,
+            depth_or_array_layers: image_layers,
         };
         let format = wgpu::TextureFormat::Rgba8Unorm;
         let texture = device.create_texture(&wgpu::TextureDescriptor {
@@ -96,7 +94,10 @@ impl Texture {
             size,
         );
 
-        let view = texture.create_view(&wgpu::TextureViewDescriptor::default());
+        let mut descriptor = wgpu::TextureViewDescriptor::default();
+        descriptor.dimension = Some(TextureViewDimension::D2Array);
+
+        let view = texture.create_view(&descriptor);
         let sampler = Self::create_sampler(&device);
 
         Ok(Self {

@@ -1,10 +1,6 @@
 use bevy_ecs::prelude::{Schedule, World};
 use bevy_ecs::system::{Res, ResMut, Resource};
-use wgpu::{Buffer, Device};
-use wgpu::util::DeviceExt;
-use crate::components::cs_render::shader_types::compute_params_uniform::ComputeParamsUniform;
 use crate::components::cs_util::camera::CustomCamera;
-use crate::components::cs_world::map::SIZE;
 
 
 #[repr(C)]

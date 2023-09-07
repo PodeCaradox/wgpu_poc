@@ -2,7 +2,7 @@ use bevy_ecs::schedule::Schedule;
 use wgpu::{BindGroup, BindGroupLayout, Buffer, Device};
 use wgpu::util::DeviceExt;
 use crate::components::cs_render::shader_types::camera_uniform::CameraUniform;
-use bevy_ecs::system::{Res, ResMut, Resource};
+use bevy_ecs::system::{Res, Resource};
 use bevy_ecs::world::World;
 use crate::main_loop::Render;
 

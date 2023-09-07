@@ -1,5 +1,4 @@
-use std::ops::DerefMut;
-use log::{error, warn};
+#![allow(unused)]
 use bevy_ecs::prelude::*;
 use bevy_ecs::system::adapter::new;
 use cgmath::Vector2;

@@ -1,12 +1,11 @@
 use bevy_ecs::prelude::{Schedule, World};
 use bevy_ecs::system::{Res, ResMut, Resource};
-use cgmath::{Matrix4, ortho, Ortho, SquareMatrix, Transform, vec2, Vector2, Vector3, Vector4, Zero};
-use log::{error, warn};
+use cgmath::{Matrix4, SquareMatrix, Vector2, Vector4, Zero};
 use winit::event::VirtualKeyCode;
 
 use crate::components::cs_util::input::Input;
 use crate::components::cs_world::map;
-use crate::components::cs_world::map::{map_to_screen_pos_centered, screen_to_map_pos, TILE_SIZE};
+use crate::components::cs_world::map::{screen_to_map_pos, TILE_SIZE};
 
 const MAX_ZOOM_OUT: f32 = 0.125_f32;
 #[rustfmt::skip]

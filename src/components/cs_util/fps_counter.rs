@@ -1,15 +1,12 @@
-use std::collections::VecDeque;
 use std::time::Duration;
-
-use instant::Instant;
-use log::{error, warn};
+use log::{error};
 
 #[derive(Debug)]
 pub struct FPSCounter {
     pub frames_per_second: i32,
     pub updates_per_second: i32,
-    time_per_frame: f64,
-    time_per_update: f64,
+    _time_per_frame: f64,
+    _time_per_update: f64,
     one_second: Duration,
     timer: Duration,
     frames_counter: i32,
@@ -21,8 +18,8 @@ impl FPSCounter {
         Self {
             frames_per_second: 0,
             updates_per_second: 0,
-            time_per_frame: 0.0,
-            time_per_update: 0.0,
+            _time_per_frame: 0.0,
+            _time_per_update: 0.0,
             one_second: Duration::from_secs(1),
             timer: Duration::new(0, 0),
             frames_counter: 0,

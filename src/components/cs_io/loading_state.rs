@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 cfg_if::cfg_if! {
     if #[cfg(target_arch = "wasm32")] {
         use wasm_bindgen::prelude::*;
@@ -20,6 +22,7 @@ pub fn set_loading_finish() {
         }
     }
 }
+
 
 pub fn set_loading(loading: Option<&str>) {
     cfg_if::cfg_if! {
